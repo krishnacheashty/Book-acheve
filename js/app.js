@@ -1,4 +1,4 @@
-
+/* get all the field value */
 const inputField=document.getElementById('input-field');
 const searchField=document.getElementById('button-search');
 const searchEmpty=document.getElementById('empty-string');
@@ -11,6 +11,7 @@ const search=()=>{
     const inputText=inputField.value;
     // console.log(inputText);
     inputField.value="";  /* for search field empty */
+    /* if any one search empty string */
     if(inputText===""){
         searchEmpty.innerText="Give a valid book title."
         errorDiv.innerHTML="";
@@ -26,6 +27,7 @@ const search=()=>{
     resultDiv.innerHTML="";
     bookCountDiv.innerHTML="";
 
+    /* fetch part && convert to json */
     const url=`http://openlibrary.org/search.json?q=${inputText}`
     fetch(url)
     .then(res=>res.json())
@@ -38,9 +40,9 @@ const search=()=>{
     
 
 const findBooks=books=>{
-    console.log(books.docs);/* need it so much */
+    // console.log(books.docs);/* need it so much */
       
-      
+      /* for hiji-bigi written */
     if(books.docs.length=== 0){
         errorDiv.innerHTML=`
         <div class="card-header fs-4 text-center">Error</div>
@@ -54,10 +56,10 @@ const findBooks=books=>{
         errorDiv.innerHTML="";
     }
 
-
+    /* for book matching number  */
     if(books.docs.length>0){
         bookCountDiv.innerHTML=`
-        <div class="card-body bg-info text-dark fs-4 ">
+        <div id="count-div" class="card-body bg-info text-dark fs-4 ">
         <p>Matching ${books.docs.length} books from total 100. </p>
         </div>
         `
@@ -65,7 +67,7 @@ const findBooks=books=>{
 
 
 
-
+    /* for search result submit div */
     const findBook=books.docs;
     findBook.forEach(myBook => {
         // console.log(myBook);
