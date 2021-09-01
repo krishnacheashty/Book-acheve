@@ -4,7 +4,7 @@ const searchField=document.getElementById('button-search');
 const searchEmpty=document.getElementById('empty-string');
 const resultDiv=document.getElementById('result-field');
 const errorDiv=document.getElementById('error');
-
+const bookCountDiv=document.getElementById('book-count');
 
 const search=()=>{
    
@@ -24,7 +24,7 @@ const search=()=>{
     /* clear field */
     searchEmpty.innerHTML="";
     resultDiv.innerHTML="";
-    
+    bookCountDiv.innerHTML="";
 
     const url=`http://openlibrary.org/search.json?q=${inputText}`
     fetch(url)
@@ -55,7 +55,13 @@ const findBooks=books=>{
     }
 
 
-
+    if(books.docs.length>0){
+        bookCountDiv.innerHTML=`
+        <div class="card-body bg-info text-dark fs-4 ">
+        <p>Matching ${books.docs.length} books from total 100. </p>
+        </div>
+        `
+    }
 
 
 
