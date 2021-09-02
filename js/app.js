@@ -60,8 +60,8 @@ const findBooks=books=>{
     /* for book matching number  */
     if(books.docs.length>0){
         bookCountDiv.innerHTML=`
-        <div id="count-div" class="card-body  text-dark fs-4 ">
-        <p>Matching ${books.docs.length} books from total 100. </p>
+        <div id="count-div" class="card-body  text-Dark fs-4 ">
+        <p>Matching <span class="text-light"> ${books.docs.length}</span> books from total 1000. </p>
         </div>
         `
     }
