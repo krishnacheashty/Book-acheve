@@ -16,7 +16,7 @@ const search=()=>{
         searchEmpty.innerHTML=`<p class="text-info" >Give a valid book title.</p>`
         errorDiv.innerHTML="";
         resultDiv.innerHTML="";
-        bookCountDiv.innerHTML=""
+        bookCountDiv.innerHTML="";
         return;
     }
     else{
@@ -41,12 +41,12 @@ const search=()=>{
     
 
 const findBooks=books=>{
-     console.log(books);/* need it so much */
+     /* console.log(books.docs.length); *//* need it so much */
       
-      /* for hiji-bigi written */
+      /* for wrong book name written */
     if(books.docs.length=== 0){
         errorDiv.innerHTML=`
-        <div class="card-header fs-4 text-center">Error</div>
+        <div class="card-header fs-4 mt-5 text-center">Error</div>
         <div class="card-body">
             <h5 class="card-title ">Your Result Not Be Found.</h5>
             <p class="card-text">Put a valid book name.</p>
@@ -74,7 +74,7 @@ const findBooks=books=>{
     /* for search result submit div */
     const findBook=books.docs;
     findBook.forEach(myBook => {
-        // console.log(myBook);
+         console.log(myBook);
         const url=`https://covers.openlibrary.org/b/id/${myBook.cover_i}-M.jpg`
         
         const div=document.createElement('div')
@@ -82,12 +82,14 @@ const findBooks=books=>{
        
         div.innerHTML=`
         <div class="card">
-            <img src="${url}" class="card-img-top" alt="">
+            
             <div class="card-body">
+                <img src="${url}" class="card-img-top" alt="">
                 <h5 class="card-title"><span class="text-primary">Book Name:</span>${myBook.title}</h5>
                 <p class="card-text fs-5"><span class="text-primary">author-Name:</span>${myBook.author_name}</p>
                 <p class="card-text fs-5"><span class="text-primary">first_publish_year:</span> ${myBook.first_publish_year}</p>
-                <p class="card-text fs-5"><span class="text-primary">publish_date:</span> ${myBook.publish_date}</p>
+                <p class="card-text fs-5"><span class="text-primary">publish_date:</span> ${myBook.publish_date[0]}</p>
+                <p class="card-text fs-5"><span class="text-primary">type:</span> ${myBook.type}</p>
             </div>
         </div>
         `
