@@ -42,14 +42,14 @@ const search=()=>{
 
 const findBooks=books=>{
      /* console.log(books.docs.length); *//* need it so much */
-      
+     console.log(books);
       /* for wrong book name written */
     if(books.docs.length=== 0){
         errorDiv.innerHTML=`
-        <div class="card-header fs-4 mt-5 text-center">Error</div>
+        <div class="card-header fs-4 text-center text-dark">Error</div>
         <div class="card-body">
-            <h5 class="card-title ">Your Result Not Be Found.</h5>
-            <p class="card-text">Put a valid book name.</p>
+            <h5 class="card-title text-dark">Your Result Not Be Found.</h5>
+            <p class="card-text text-dark text-center fs-5">Put a valid book name.</p>
         </div>
         `
     }
@@ -59,9 +59,10 @@ const findBooks=books=>{
 
     /* for book matching number  */
     if(books.docs.length>0){
+        // console.log(books.docs.length);
         bookCountDiv.innerHTML=`
         <div id="count-div" class="card-body  text-Dark fs-4 ">
-        <p>Matching <span class="text-light"> ${books.docs.length}</span> books from total 1000. </p>
+        <p>Matching <span class="color-change"> ${books.docs.length}</span> books from total <span class="color-change"> ${books.numFound}.</span> showing  21 result only.</p>
         </div>
         `
     }
@@ -72,24 +73,37 @@ const findBooks=books=>{
 
 
     /* for search result submit div */
-    const findBook=books.docs;
+    const findBook=books.docs.slice(0,21);
     findBook.forEach(myBook => {
-         console.log(myBook);
+        //  console.log(myBook);
         const url=`https://covers.openlibrary.org/b/id/${myBook.cover_i}-M.jpg`
         
         const div=document.createElement('div')
         div.classList.add('col');
+        const publishDay=myBook.publish_date;
        
         div.innerHTML=`
         <div class="card">
             
-            <div class="card-body">
-                <img src="${url}" class="card-img-top" alt="">
-                <h5 class="card-title"><span class="text-primary">Book Name:</span>${myBook.title}</h5>
-                <p class="card-text fs-5"><span class="text-primary">author-Name:</span>${myBook.author_name}</p>
-                <p class="card-text fs-5"><span class="text-primary">first_publish_year:</span> ${myBook.first_publish_year}</p>
-                <p class="card-text fs-5"><span class="text-primary">publish_date:</span> ${myBook.publish_date[0]}</p>
-                <p class="card-text fs-5"><span class="text-primary">type:</span> ${myBook.type}</p>
+            <div id="bg-info" class="card-body ">
+                <div><img src="${url}" 
+                id="div-hight" 
+                class="card-img-top img-fluid" alt=""></div>
+                <h5 class="card-title">
+                <span class="text-primary">Book Name:</span>
+                ${myBook.title}</h5>
+                <p class="card-text fs-5">
+                <span class="text-primary">author-Name:</span>
+                ${myBook.author_name}</p>
+                <p class="card-text fs-5">
+                <span class="text-primary">first_publish_year:</span>
+                 ${myBook.first_publish_year}</p>
+                <p class="card-text fs-5">
+                <span class="text-primary">publish_date:</span> 
+                ${publishDay}</p>
+                <p class="card-text fs-5">
+                <span class="text-primary">contributor:</span> 
+                ${myBook.contributor}</p>
             </div>
         </div>
         `
