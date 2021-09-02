@@ -13,9 +13,10 @@ const search=()=>{
     inputField.value="";  /* for search field empty */
     /* if any one search empty string */
     if(inputText===""){
-        searchEmpty.innerText="Give a valid book title."
+        searchEmpty.innerHTML=`<p class="text-info" >Give a valid book title.</p>`
         errorDiv.innerHTML="";
         resultDiv.innerHTML="";
+        bookCountDiv.innerHTML=""
         return;
     }
     else{
@@ -40,7 +41,7 @@ const search=()=>{
     
 
 const findBooks=books=>{
-    // console.log(books.docs);/* need it so much */
+     console.log(books);/* need it so much */
       
       /* for hiji-bigi written */
     if(books.docs.length=== 0){
@@ -59,10 +60,13 @@ const findBooks=books=>{
     /* for book matching number  */
     if(books.docs.length>0){
         bookCountDiv.innerHTML=`
-        <div id="count-div" class="card-body bg-info text-dark fs-4 ">
+        <div id="count-div" class="card-body  text-dark fs-4 ">
         <p>Matching ${books.docs.length} books from total 100. </p>
         </div>
         `
+    }
+    else{
+        bookCountDiv.innerHTML="";
     }
 
 
