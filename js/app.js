@@ -62,7 +62,7 @@ const findBooks=books=>{
         // console.log(books.docs.length);
         bookCountDiv.innerHTML=`
         <div id="count-div" class="card-body  text-Dark fs-4 ">
-        <p>showing result<span class="color-change"> ${books.docs.slice(0,21).length}</span> books from total <span class="color-change"> ${books.numFound}.</span> .</p>
+        <p>showing result<span class="color-change"> ${books.docs.slice(0,21).length} </span>search result <span class="color-change"> ${books.docs.length} </span>books from total <span class="color-change"> ${books.numFound}.</span> .</p>
         </div>
         `
     }
