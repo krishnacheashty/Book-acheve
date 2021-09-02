@@ -12,7 +12,7 @@
 </head>
 <body class="bg-secondary">
     <header>
-        <nav class="navbar navbar-expand-lg fs-4 navbar-light bg-dark ">
+      <nav class="navbar navbar-expand-lg fs-4 navbar-light bg-dark ">
             <div class="container-fluid">
               
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,27 +27,36 @@
                 </div>
               </div>
             </div>
-        </nav>
-        <!-- search section start here -->
-        <section>
-          <h1 class="text-center mt-3"><span class="myColor ">welcome</span> to our <span class="myColor">site</span></h1>
+      </nav>
+      <!-- search section start here -->
+      <section>
+        <h1 class="text-center mt-3"><span class="myColor ">welcome</span> to our <span class="myColor">site</span></h1>
                         
-            <div class="input-group mb-3 w-50 mx-auto mt-5">
-              <input 
+          <div class="input-group mb-3 w-50 mx-auto mt-5">
+            <input 
                 id="input-field"
                 type="text"
                 class="form-control" 
                 placeholder="Book you want to find" aria-label="Recipient's username" aria-describedby="button-addon2">
-              <button 
+            <button 
                 class="btn btn-success btn-outline-success text-white" 
                 type="button" 
                 id="button-search"
                 onclick="search()"
-              >search</button>
-            </div>
-            
-        </section>
-        <!-- search section end here -->
+            >search</button>
+          </div>
+        <!-- search section end here -->    
+      </section>
+        
+      <!-- spinner section start -->
+      <section>
+        <div id="spinner" class="d-flex justify-content-center mt-5 text-info d-none ">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </section>
+      <!-- spinner section start -->
 
     </header>
     <main>
@@ -61,7 +70,7 @@
        
         <section class="container d-flex justify-content-center my-3">
           
-          <div id="error" class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+          <div id="error" class="card mb-3 text-white bg-secondary" style="max-width: 18rem;">
             
           </div>
         </section>

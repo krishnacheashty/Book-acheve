@@ -5,6 +5,8 @@ const searchEmpty=document.getElementById('empty-string');
 const resultDiv=document.getElementById('result-field');
 const errorDiv=document.getElementById('error');
 const bookCountDiv=document.getElementById('book-count');
+const spinnerDiv=document.getElementById('spinner');
+
 
 const search=()=>{
    
@@ -28,6 +30,9 @@ const search=()=>{
     resultDiv.innerHTML="";
     bookCountDiv.innerHTML="";
 
+    /* spenner handeling */
+    spinnerDiv.classList.remove('d-none');
+
     /* fetch part && convert to json */
     const url=`https://openlibrary.org/search.json?q=${inputText}`
     fetch(url)
@@ -36,14 +41,10 @@ const search=()=>{
     
 }
 
- 
-
-    
-
 const findBooks=books=>{
-     /* console.log(books.docs.length); *//* need it so much */
+    /* console.log(books.docs.length); *//* need it so much */
      console.log(books);
-      /* for wrong book name written */
+    /* for wrong book name written */
     if(books.docs.length=== 0){
         errorDiv.innerHTML=`
         <div class="card-header fs-4 text-center text-dark">Error</div>
@@ -59,7 +60,7 @@ const findBooks=books=>{
 
     /* for book matching number  */
     if(books.docs.length>0){
-        // console.log(books.docs.length);
+    // console.log(books.docs.length);
         bookCountDiv.innerHTML=`
         <div id="count-div" class="card-body  text-Dark fs-4 ">
         <p>showing result<span class="color-change"> ${books.docs.slice(0,21).length} </span>search result <span class="color-change"> ${books.docs.length} </span>books from total <span class="color-change"> ${books.numFound}.</span> .</p>
@@ -69,13 +70,15 @@ const findBooks=books=>{
     else{
         bookCountDiv.innerHTML="";
     }
+    /* spinner handeling */
+     spinnerDiv.classList.add('d-none');
 
 
 
     /* for search result submit div */
     const findBook=books.docs.slice(0,21);
     findBook.forEach(myBook => {
-        //  console.log(myBook);
+    //  console.log(myBook);
         const url=`https://covers.openlibrary.org/b/id/${myBook.cover_i}-M.jpg`
         
         const div=document.createElement('div')
